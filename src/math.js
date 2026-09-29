@@ -4,3 +4,8 @@
 export function add(a, b) {
   return a + b;
 }
+
+/** Product of two numbers. */
+export function multiply(a, b) {
+  return a * b;
+}
