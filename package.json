@@ -1,0 +1,6 @@
+{
+  "name": "agent-spike-sandbox",
+  "private": true,
+  "description": "P2.4 real agent spike sandbox (not a product): copied into an isolated per-AgentRun workspace; tests run with `node --test` in a network-less container.",
+  "type": "module"
+}
