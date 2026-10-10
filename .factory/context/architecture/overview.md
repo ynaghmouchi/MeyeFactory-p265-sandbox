@@ -1,5 +1,5 @@
 ---
-last_verified_commit: afce17320b96b53b11f8e1a5c8c5f71610c7fdfe
+last_verified_commit: a1932a5aa401624163dd688df0c9689bbee9700a
 ---
 # Product purpose and architecture (fixture)
 
