@@ -10,6 +10,6 @@ test('add throws a TypeError when given a non-finite input', () => {
   assert.throws(() => add(Infinity, 1), TypeError);
   assert.throws(() => add(1, NaN), TypeError);
   assert.throws(() => add('2', 3), TypeError);
-  assert.throws(() => add(2, null), TypeError);
-  assert.throws(() => add(undefined, 3), TypeError);
+  assert.throws(() => add(null, 3), TypeError);
+  assert.throws(() => add(2, undefined), TypeError);
 });
