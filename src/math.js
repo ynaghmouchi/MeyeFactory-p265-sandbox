@@ -7,8 +7,10 @@ function assertFiniteNumber(value, name) {
   }
 }
 
-/** Sum of two numbers. */
+/** Sum of two numbers. Enforces R1: inputs must be finite numbers. */
 export function add(a, b) {
+  assertFiniteNumber(a, 'a');
+  assertFiniteNumber(b, 'b');
   return a + b;
 }
 
