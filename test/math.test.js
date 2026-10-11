@@ -6,6 +6,14 @@ test('add returns the sum of two numbers', () => {
   assert.equal(add(2, 3), 5);
 });
 
+test('add throws a TypeError when called with a non-finite input', () => {
+  assert.throws(() => add('2', 3), TypeError);
+  assert.throws(() => add(2, NaN), TypeError);
+  assert.throws(() => add(Infinity, 3), TypeError);
+  assert.throws(() => add(null, 3), TypeError);
+  assert.throws(() => add(2, undefined), TypeError);
+});
+
 test('subtract returns the difference of two numbers', () => {
   assert.equal(subtract(5, 3), 2);
 });
