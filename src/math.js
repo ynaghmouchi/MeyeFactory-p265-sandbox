@@ -20,3 +20,10 @@ export function subtract(a, b) {
   assertFiniteNumber(b, 'b');
   return a - b;
 }
+
+/** Product of two numbers (a * b). Enforces R1: inputs must be finite numbers. */
+export function multiply(a, b) {
+  assertFiniteNumber(a, 'a');
+  assertFiniteNumber(b, 'b');
+  return a * b;
+}
