@@ -21,16 +21,9 @@ export function subtract(a, b) {
   return a - b;
 }
 
-/**
- * Quotient of two numbers (a / b).
- * Enforces R1: inputs must be finite numbers.
- * Enforces R3: dividing by zero throws a RangeError instead of returning Infinity or NaN.
- */
-export function divide(a, b) {
+/** Product of two numbers. Enforces R1: inputs must be finite numbers. */
+export function multiply(a, b) {
   assertFiniteNumber(a, 'a');
   assertFiniteNumber(b, 'b');
-  if (b === 0) {
-    throw new RangeError('b must not be zero');
-  }
-  return a / b;
+  return a * b;
 }

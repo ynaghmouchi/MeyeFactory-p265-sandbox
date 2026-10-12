@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { add, subtract, divide } from '../src/math.js';
+import { add, subtract, multiply } from '../src/math.js';
 
 test('add returns the sum of two numbers', () => {
   assert.equal(add(2, 3), 5);
@@ -43,35 +43,41 @@ test('subtract does not mutate its inputs and produces no console output', () =>
   }
 });
 
-test('divide returns the quotient of two finite numbers', () => {
-  assert.equal(divide(6, 3), 2);
-  assert.equal(divide(5, 2), 2.5);
+test('multiply returns the product of two finite numbers', () => {
+  assert.equal(multiply(4, 5), 20);
 });
 
-test('divide throws a RangeError when dividing by zero', () => {
-  assert.throws(() => divide(5, 0), RangeError);
-  assert.throws(() => divide(0, 0), RangeError);
+test('multiply returns the product with a negative operand', () => {
+  assert.equal(multiply(-4, 5), -20);
 });
 
-test('divide throws a TypeError when called with a non-finite input', () => {
-  assert.throws(() => divide('5', 3), TypeError);
-  assert.throws(() => divide(5, NaN), TypeError);
-  assert.throws(() => divide(Infinity, 3), TypeError);
-  assert.throws(() => divide(null, 3), TypeError);
-  assert.throws(() => divide(5, undefined), TypeError);
+test('multiply returns zero when one operand is zero', () => {
+  assert.equal(multiply(0, 5), 0);
 });
 
-test('divide does not mutate its inputs and produces no console output', () => {
-  const a = 6;
-  const b = 3;
+test('multiply returns an unrounded result for non-integer operands', () => {
+  assert.equal(multiply(0.1, 0.2), 0.1 * 0.2);
+});
+
+test('multiply throws a TypeError when called with a non-finite input', () => {
+  assert.throws(() => multiply('4', 5), TypeError);
+  assert.throws(() => multiply(4, NaN), TypeError);
+  assert.throws(() => multiply(Infinity, 5), TypeError);
+  assert.throws(() => multiply(null, 5), TypeError);
+  assert.throws(() => multiply(4, undefined), TypeError);
+});
+
+test('multiply does not mutate its inputs and produces no console output', () => {
+  const a = 4;
+  const b = 5;
   const originalLog = console.log;
   let called = false;
   console.log = () => { called = true; };
   try {
-    const result = divide(a, b);
-    assert.equal(result, 2);
-    assert.equal(a, 6);
-    assert.equal(b, 3);
+    const result = multiply(a, b);
+    assert.equal(result, 20);
+    assert.equal(a, 4);
+    assert.equal(b, 5);
     assert.equal(called, false);
   } finally {
     console.log = originalLog;
