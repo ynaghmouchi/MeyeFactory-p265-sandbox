@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { add, subtract } from '../src/math.js';
+import { add, subtract, divide } from '../src/math.js';
 
 test('add returns the sum of two numbers', () => {
   assert.equal(add(2, 3), 5);
@@ -36,6 +36,41 @@ test('subtract does not mutate its inputs and produces no console output', () =>
     const result = subtract(a, b);
     assert.equal(result, 2);
     assert.equal(a, 5);
+    assert.equal(b, 3);
+    assert.equal(called, false);
+  } finally {
+    console.log = originalLog;
+  }
+});
+
+test('divide returns the quotient of two finite numbers', () => {
+  assert.equal(divide(6, 3), 2);
+  assert.equal(divide(5, 2), 2.5);
+});
+
+test('divide throws a RangeError when dividing by zero', () => {
+  assert.throws(() => divide(5, 0), RangeError);
+  assert.throws(() => divide(0, 0), RangeError);
+});
+
+test('divide throws a TypeError when called with a non-finite input', () => {
+  assert.throws(() => divide('5', 3), TypeError);
+  assert.throws(() => divide(5, NaN), TypeError);
+  assert.throws(() => divide(Infinity, 3), TypeError);
+  assert.throws(() => divide(null, 3), TypeError);
+  assert.throws(() => divide(5, undefined), TypeError);
+});
+
+test('divide does not mutate its inputs and produces no console output', () => {
+  const a = 6;
+  const b = 3;
+  const originalLog = console.log;
+  let called = false;
+  console.log = () => { called = true; };
+  try {
+    const result = divide(a, b);
+    assert.equal(result, 2);
+    assert.equal(a, 6);
     assert.equal(b, 3);
     assert.equal(called, false);
   } finally {
