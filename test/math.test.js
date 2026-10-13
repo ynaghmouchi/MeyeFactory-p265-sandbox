@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { add, subtract, divide } from '../src/math.js';
+import { add, subtract, multiply, divide } from '../src/math.js';
 
 test('add returns the sum of two numbers', () => {
   assert.equal(add(2, 3), 5);
@@ -41,6 +41,19 @@ test('subtract does not mutate its inputs and produces no console output', () =>
   } finally {
     console.log = originalLog;
   }
+});
+
+test('multiply returns the product of two finite numbers', () => {
+  assert.equal(multiply(4, 3), 12);
+  assert.equal(multiply(-2, 5), -10);
+});
+
+test('multiply throws a TypeError when called with a non-finite input', () => {
+  assert.throws(() => multiply('4', 3), TypeError);
+  assert.throws(() => multiply(4, NaN), TypeError);
+  assert.throws(() => multiply(Infinity, 3), TypeError);
+  assert.throws(() => multiply(null, 3), TypeError);
+  assert.throws(() => multiply(4, undefined), TypeError);
 });
 
 test('divide returns the quotient of two numbers', () => {
