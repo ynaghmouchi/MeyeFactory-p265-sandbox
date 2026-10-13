@@ -21,6 +21,13 @@ export function subtract(a, b) {
   return a - b;
 }
 
+/** Product of two numbers. Enforces R1: inputs must be finite numbers. */
+export function multiply(a, b) {
+  assertFiniteNumber(a, 'a');
+  assertFiniteNumber(b, 'b');
+  return a * b;
+}
+
 /**
  * Quotient of two numbers (a / b).
  * Enforces R1: inputs must be finite numbers.
